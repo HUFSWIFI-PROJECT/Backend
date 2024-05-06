@@ -1,7 +1,6 @@
-package com.example.backend.Repository;
+package com.example.backend.Domain.Member;
 
 
-import com.example.backend.Entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,6 +1,6 @@
 package com.example.backend.unit;
 
-import com.example.backend.Entity.Authority;
+import com.example.backend.Domain.Member.Authority;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

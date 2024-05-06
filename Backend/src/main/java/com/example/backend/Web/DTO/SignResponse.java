@@ -1,7 +1,7 @@
-package com.example.backend.DTO;
+package com.example.backend.Web.DTO;
 
-import com.example.backend.Entity.Authority;
-import com.example.backend.Entity.Member;
+import com.example.backend.Domain.Member.Authority;
+import com.example.backend.Domain.Member.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

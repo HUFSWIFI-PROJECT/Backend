@@ -32,11 +32,15 @@ dependencies {
     ext['spring-security.version']='6.2.1'
     testImplementation 'org.springframework.security:spring-security-test'
 
+    // mustache
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
+
     //JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     //mariadb
     implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.1'
+    testImplementation 'junit:junit:4.13.1'
 
     //lombok
     compileOnly 'org.projectlombok:lombok'

@@ -1,6 +1,6 @@
 package com.example.backend.unit;
 
-import com.example.backend.Repository.MemberRepository;
+import com.example.backend.Domain.Member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

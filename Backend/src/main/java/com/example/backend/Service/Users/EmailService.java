@@ -1,4 +1,4 @@
-package com.example.backend.Service;
+package com.example.backend.Service.Users;
 
 import com.example.backend.unit.RedisUtil;
 import jakarta.mail.Message;

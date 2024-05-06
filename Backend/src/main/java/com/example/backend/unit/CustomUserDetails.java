@@ -1,6 +1,6 @@
 package com.example.backend.unit;
 
-import com.example.backend.Entity.Member;
+import com.example.backend.Domain.Member.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
