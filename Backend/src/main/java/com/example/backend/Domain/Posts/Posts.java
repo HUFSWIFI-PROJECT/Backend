@@ -3,6 +3,7 @@ package com.example.backend.Domain.Posts;
 import com.example.backend.Domain.BasetimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.Builder;
 
 @Entity
 @Getter
@@ -16,7 +17,7 @@ public class Posts extends BasetimeEntity {
     @Column(length = 500, nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(length = 50000)
     private String content;
 
     private String author;
@@ -26,10 +27,5 @@ public class Posts extends BasetimeEntity {
         this.title = title;
         this.content = content;
         this.author = author;
-    }
-
-    public void update(String title, String content) {
-        this.title = title;
-        this.content = content;
     }
 }

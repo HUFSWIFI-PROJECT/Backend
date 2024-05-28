@@ -1,6 +1,5 @@
 package com.example.backend.Domain.Member;
 
-import com.example.backend.Domain.Member.Member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
