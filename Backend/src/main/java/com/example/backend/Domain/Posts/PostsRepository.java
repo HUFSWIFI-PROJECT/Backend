@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface PostsRepository  extends JpaRepository<Posts, Long> {
     Optional<Posts> findById(Long id);
 
+    List<Posts> findAll();
+
     @Query("SELECT p FROM Posts p ORDER BY p.id DESC")
     List<Posts> findAllDesc();
 }

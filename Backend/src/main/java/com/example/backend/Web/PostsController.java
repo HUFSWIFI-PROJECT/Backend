@@ -1,5 +1,6 @@
 package com.example.backend.Web;
 
+import com.example.backend.Domain.Posts.Posts;
 import com.example.backend.Service.Users.EmailService;
 import com.example.backend.Service.Users.Post.PostService;
 import com.example.backend.Service.Users.SignService;
@@ -14,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class PostsController {
@@ -25,4 +28,18 @@ public class PostsController {
     public ResponseEntity<Boolean> save(@RequestBody PostsRequest request) throws Exception {
         return new ResponseEntity<>(postService.save(request), HttpStatus.OK);
     }
+
+    @Operation(operationId = "findbyid", summary = "findbyid", description = "findbyid", tags = "PostsController")
+    @GetMapping(value = "/findbyid")
+    public ResponseEntity<Posts> findById(@RequestParam Long id) {
+        return new ResponseEntity<>(postService.findById(id), HttpStatus.OK);
+    }
+
+    @Operation(operationId = "findbyall", summary = "테스트", description = "테스트", tags = "PostsController")
+    @GetMapping(value = "/findbyall")
+    public ResponseEntity<List<Posts>> findAll() {
+        return new ResponseEntity<>(postService.findAll(), HttpStatus.OK);
+    }
+
+
 }

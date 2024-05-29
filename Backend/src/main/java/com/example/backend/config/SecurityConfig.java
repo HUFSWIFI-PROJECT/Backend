@@ -5,6 +5,7 @@ import com.example.backend.unit.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -15,6 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
 @Configuration
@@ -27,35 +31,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
-                .headers((header) -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
-
-                .sessionManagement((session)->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-
-                .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
-
-                .authorizeHttpRequests((registry) ->
-                        registry.requestMatchers(
-                                        new AntPathRequestMatcher("/login"),
-                                        new AntPathRequestMatcher("/register"),
-                                        new AntPathRequestMatcher("/api/**"),
-                                        new AntPathRequestMatcher("/**"),
-                                        new AntPathRequestMatcher("/v1/email/certification/check"),
-                                        new AntPathRequestMatcher("/sendNewPassword"),
-                                        new AntPathRequestMatcher("/swagger-ui/**"),
-                                        new AntPathRequestMatcher("/swagger-resources/**"),
-                                        new AntPathRequestMatcher("/v2/api-docs"),
-                                        new AntPathRequestMatcher("/v3/api-docs/**"),
-                                        new AntPathRequestMatcher("/book/**")
-                                )
-                                .permitAll()
-                                .anyRequest().authenticated()
-
-                );
-
-
+                .cors(Customizer.withDefaults())
+                .csrf((csrf) -> csrf.disable());
 
         return http.build();
+    }
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        return source;
     }
 
     @Bean

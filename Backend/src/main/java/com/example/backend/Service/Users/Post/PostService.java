@@ -6,6 +6,9 @@ import com.example.backend.Web.DTO.PostsRequest;
 import com.example.backend.Web.DTO.SignRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class PostService {
 
@@ -27,6 +30,14 @@ public class PostService {
         postsRepository.save(posts);
 
         return true;
+    }
+
+    public Posts findById(Long id) {
+        return postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+    }
+
+    public List<Posts> findAll() {
+        return postsRepository.findAll();
     }
 
 }
