@@ -4,6 +4,7 @@ import com.example.backend.Domain.BasetimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.Builder;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
@@ -22,10 +23,17 @@ public class Posts extends BasetimeEntity {
 
     private String author;
 
+    @ColumnDefault("0")
+    private int hits;
+
     @Builder
     public Posts(String title, String content, String author) {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void setHits(int i) {
+        this.hits = i;
     }
 }

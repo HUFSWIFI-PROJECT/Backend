@@ -33,11 +33,18 @@ public class PostService {
     }
 
     public Posts findById(Long id) {
+        Posts n =  postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+        n.setHits(n.getHits() + 1);
+        postsRepository.save(n);
         return postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
     }
 
     public List<Posts> findAll() {
         return postsRepository.findAll();
+    }
+
+    public List<Posts> findOrderbyHit() {
+        return postsRepository.findTop5ByOrderByHitsDesc();
     }
 
 }
